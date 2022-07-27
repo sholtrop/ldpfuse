@@ -2,10 +2,12 @@ name: Run unit/integration tests
 on: [push]
 jobs:
   run-tests:
-    - uses: actions/checkout@v3
-    - name: Setup and tests
-      working-directory: ./tests
-      run: make
-    - name: Run tests
-      working-directory: ./tests
-      run: ./run_all.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup and tests
+        working-directory: ./tests
+        run: make
+      - name: Run tests
+        working-directory: ./tests
+        run: ./run_all.sh
