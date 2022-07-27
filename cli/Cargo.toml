@@ -1,0 +1,19 @@
+[package]
+name = "ldpfuse"
+version = "0.1.0"
+authors = ["Sjors Holtrop <sjors@sholtrop.dev>"]
+edition = "2021"
+keywords = ["filesystem", "fuse", "hpc"]
+categories = ["command-line-utilities", "filesystem"]
+description = "CLI utility to be used with LDP_FUSE. See https://github.com/sholtrop/ldpfuse for more info." 
+readme = "https://github.com/sholtrop/ldpfuse"
+documentation = "https://github.com/sholtrop/ldpfuse"
+repository = "https://github.com/sholtrop/ldpfuse"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.57"
+clap = { version = "3.0.14", features = ["derive"] }
+nix = "0.24.1"

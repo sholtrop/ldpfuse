@@ -1,0 +1,3 @@
+# Filebench requires ASLR to be turned off, for some reason...
+sudo bash -c "echo 0 > /proc/sys/kernel/randomize_va_space";
+sudo filebench -f $1 &> "$1.out"
