@@ -1,6 +1,6 @@
 # Introduction
 
-LDP_FUSE (`LD_PRELOAD` Filesystem in Userspace) is a header-only C library for writing file systems, leveraging the [`LD_PRELOAD` trick](http://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the*-ld_preload-_trick/). Explained briefly, you write a shared library (.so file) using the API that LDP_FUSE provides, and then run a binary with your shared library `LD_PRELOAD`ed. LDP_FUSE will take care of several low level details for you (see [Documentation](https://github.com/sholtrop/ldpfuse_public#documentation)).
+LDP_FUSE (`LD_PRELOAD` Filesystem in Userspace) is a header-only C library for writing file systems, leveraging the [`LD_PRELOAD` trick](http://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the*-ld_preload-_trick/). Explained briefly, you write a shared library (.so file) using the API that LDP_FUSE provides, and then run a binary with your shared library `LD_PRELOAD`ed. LDP_FUSE will take care of several low level details for you (see [Documentation](https://github.com/sholtrop/ldpfuse#documentation)).
 
 # Installation
 
@@ -131,7 +131,7 @@ You may specify any of the following flags:
 
 - `-D LDP_FUSE_DEBUG` - Log debug output to stderr.
 - `-D LDP_FUSE_THREAD_SAFE` - Make LDP_FUSE's internal datastructures thread safe. Should be included if the LDP_FUSE file system will be used to run programs that perform multithreaded file I/O. If included, `pthreads` must be dynamically linked.
-- `-D LDP_FUSE_OFT_SIZE <size>` - Set the size of LDP_FUSE's open file descriptor table (see [Open File Descriptor Table](https://github.com/sholtrop/ldpfuse_public#open-file-descriptor-table-oft)). Defaults to 200.
+- `-D LDP_FUSE_OFT_SIZE <size>` - Set the size of LDP_FUSE's open file descriptor table (see [Open File Descriptor Table](https://github.com/sholtrop/ldpfuse#open-file-descriptor-table-oft)). Defaults to 200.
 
 ## Open File Descriptor Table (OFT)
 
@@ -143,7 +143,7 @@ The maximum amount of entries is determined at compile time (`LDP_FUSE_OFT_SIZE`
 In your custom file system functions, do NOT use the original function. E.g., in `my_read`, do not call `read`. Doing so will cause an infinite loop, as LDP_FUSE redirects `read` to `my_read`.
 Instead, use the last argument, which is a function pointer to the original `pread` function.
 
-If the program that uses the LDP_FUSE is multithreaded, include the `LDP_FUSE_THREAD_SAFE` flag (see [Conditional Compilation](https://github.com/sholtrop/ldpfuse_public#conditional-compilation)]
+If the program that uses the LDP_FUSE is multithreaded, include the `LDP_FUSE_THREAD_SAFE` flag (see [Conditional Compilation](https://github.com/sholtrop/ldpfuse#conditional-compilation)]
 
 # Known issues & limitations
 
@@ -168,3 +168,6 @@ Certain file system I/O functions do not have a glibc wrapper (e.g. `openat2`). 
 # Credits
 
 This library includes likle's great [cwalk](https://github.com/likle/cwalk) library for path resolution.
+
+# License
+MIT
