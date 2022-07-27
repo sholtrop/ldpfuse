@@ -34,7 +34,7 @@ LDPRELOAD_FUSE_MAIN {
 }
 ```
 
-Compile this to a shared object (.so) file using `gcc`.
+Compile this to a shared object (.so) file using `gcc`. You must dynamically link `libdl`, e.g. by specifying `-ldl`.
 
 ## Using the CLI
 
