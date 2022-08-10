@@ -1,6 +1,6 @@
 # Introduction
 
-LDP_FUSE (`LD_PRELOAD` Filesystem in Userspace) is a header-only C library for writing file systems, leveraging the [`LD_PRELOAD` trick](http://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the*-ld_preload-_trick/). Explained briefly, you write a shared library (.so file) using the API that LDP_FUSE provides, and then run a binary with your shared library `LD_PRELOAD`ed. LDP_FUSE will take care of several low level details for you (see [Documentation](#documentation)).
+LDP_FUSE (`LD_PRELOAD` Filesystem in Userspace) is a header-only C library for writing file systems, leveraging the [`LD_PRELOAD` trick](https://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the_-ld_preload-_trick/). Explained briefly, you write a shared library (.so file) using the API that LDP_FUSE provides, and then run a binary with your shared library `LD_PRELOAD`ed. LDP_FUSE will take care of several low level details for you (see [Documentation](#documentation)).
 
 # Installation
 
