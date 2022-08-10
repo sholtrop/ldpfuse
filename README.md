@@ -2,6 +2,8 @@
 
 LDP_FUSE (`LD_PRELOAD` Filesystem in Userspace) is a header-only C library for writing file systems, leveraging the [`LD_PRELOAD` trick](https://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the_-ld_preload-_trick/). Explained briefly, you write a shared library (.so file) using the API that LDP_FUSE provides, and then run a binary with your shared library `LD_PRELOAD`ed. LDP_FUSE will take care of several low level details for you (see [Documentation](#documentation)).
 
+**Important note**: This project is mostly a proof-of-concept. All of the current [limitations](#known-issues--limitations) make it not feasible to run in production. 
+
 # Installation
 
 Include all of the files under the `include/` folder in your build system.
@@ -164,6 +166,10 @@ Linux executes setuid binaries in secure execution mode. Under this mode, `LD_PR
 ## Functions with no glibc wrapper
 
 Certain file system I/O functions do not have a glibc wrapper (e.g. `openat2`). These function calls can therefore not be intercepted.
+
+## LDP_FUSE file systems without a backing regular file system
+
+LDP_FUSE maintains one `OFDT` per process. There is no ipc or r/w mechanism that avoids two processes accessing a file at the same time yet. This means you will still need a regular file system backing it, so that it can take care of this. This issue might be alleviated in the future, with a single `OFDT` in shared memory.
 
 # Credits
 
