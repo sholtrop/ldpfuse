@@ -29,19 +29,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-
-/*
-  from version GLIBC 2.32 unistd.h contains constant definitions that we need, but also `close_range`
-  This causes conflicts as symbols with those names are also
-  necessarily defined here. We therefore overwrite them using #define.
-*/
-#if (__GLIBC__ > 1 && __GLIBC_MINOR__ > 32)
-#define close_range __renamed_close_range
 #include <unistd.h>
-#undef close_range
-#else 
-#include <unistd.h>
-#endif
 
 // Include `cwalk` directly as this lib is header-only
 #include "./cwalk.c"
@@ -430,15 +418,7 @@ static char* resolve_fd(int fd) {
 
 #define LDP_FUSE_PATH_MAX_LEN 256
 
-/*
-  from version 2.32 glibc does not have the _STAT_VER macro
-  defined in "sys/stat.h"
-*/
-#if (__GLIBC__ > 1 && __GLIBC_MINOR__ > 32)
-#define STAT_VER 0 
-#else
 #define STAT_VER _STAT_VER
-#endif
 
 // Whether `path` is in the LDP_FUSE filesystem. The LDP_FUSE filesystem is
 // mounted under the LDP_FUSE_PATH env variable.
